@@ -1,0 +1,14 @@
+ARG TF_IMG
+
+FROM ${TF_IMG}
+
+RUN micromamba install -y -n base \
+    jupyterlab && \
+    micromamba clean --all --yes
+
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
+ENV PATH=${PATH}:/opt/conda/bin/
+
+RUN mkdir -p /tmp/notebooks && chmod -R a+rwx /tmp/notebooks
+ENTRYPOINT ["sh", "-c", "jupyter lab --notebook-dir=/tmp/notebooks --no-browser --ip=0.0.0.0 --allow-root --port=8888 --NotebookApp.token='' --NotebookApp.allow_origin='*'"]
+

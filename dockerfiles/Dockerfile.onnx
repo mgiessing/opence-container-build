@@ -1,0 +1,17 @@
+ARG BASE_IMG
+
+FROM ${BASE_IMG}
+
+RUN micromamba install -y -n base \
+    onnx \
+    numpy \
+    scipy \
+    pandas \
+    scikit-learn \
+    opencv \
+    wget \
+    matplotlib \
+    spacy && \
+    micromamba clean --all --yes
+
+ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python3"]

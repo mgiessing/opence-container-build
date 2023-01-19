@@ -1,0 +1,17 @@
+ARG ROOT_IMAGE=mambaorg/micromamba
+
+FROM ${ROOT_IMAGE}
+
+ARG PYTHON_VERSION=3.8
+ARG CHANNEL=https://ftp.osuosl.org/pub/open-ce
+ARG OPENCE_VERSION=1.1.1
+
+RUN micromamba config append channels ${CHANNEL}/${OPENCE_VERSION} && \
+    micromamba config append channels main && \
+    micromamba config set channel_priority strict && \
+    micromamba install -y -n base python=${PYTHON_VERSION} && \
+    micromamba clean --all --yes
+
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
+ENV PATH=${PATH}:/opt/conda/bin/ 
+ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python3"]

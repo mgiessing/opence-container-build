@@ -8,6 +8,9 @@ RUN micromamba install -y -n base \
     scipy \
     pandas \
     scikit-learn \
+    skl2onnx \
+    lightgbm \
+    xgboost \
     opencv \
     wget \
     matplotlib \

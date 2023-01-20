@@ -17,9 +17,6 @@ else
   GPU_CPU+=""
 endif
 
-debug:
-	echo --build-arg ${GPU_CPU}
-
 build-all: build-tf-jupyter build-pt-jupyter build-onnx-jupyter
 
 build-base:

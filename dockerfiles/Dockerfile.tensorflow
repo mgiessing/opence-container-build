@@ -4,10 +4,14 @@ FROM ${BASE_IMG}
 ARG GPU_CPU
 RUN micromamba install -y -n base \
     tensorflow${GPU_CPU} \
+    tf2onnx \
     numpy \
     scipy \
     pandas \
     scikit-learn \
+    skl2onnx \
+    lightgbm \
+    xgboost \
     opencv \
     wget \
     matplotlib \

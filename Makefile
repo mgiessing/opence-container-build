@@ -19,9 +19,6 @@ else
   GPU_CPU+=""
 endif
 
-debug:
-	echo -n "${CHANNEL}"
-
 build-all: build-tf-jupyter build-pt-jupyter build-onnx-jupyter
 
 build-base:
@@ -37,7 +34,7 @@ build-base:
 build-tf: build-base
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-	--build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
+	--build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base${IS_P10} \
 	--build-arg GPU_CPU=${GPU_CPU} \
 	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-tensorflow${GPU_CPU} \
 	-f dockerfiles/Dockerfile.tensorflow .
@@ -45,7 +42,7 @@ build-tf: build-base
 build-pt: build-base
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-        --build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
+        --build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base${IS_P10} \
         --build-arg GPU_CPU=${GPU_CPU} \
         -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-pytorch${GPU_CPU} \
         -f dockerfiles/Dockerfile.pytorch .
@@ -53,7 +50,7 @@ build-pt: build-base
 build-onnx: build-base
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-        --build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
+        --build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base${IS_P10} \
 	--build-arg GPU_CPU=${GPU_CPU} \
         -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx${GPU_CPU} \
         -f dockerfiles/Dockerfile.onnx .

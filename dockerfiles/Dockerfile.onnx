@@ -6,7 +6,7 @@ RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi &
     if [[ $GPU_CPU == "-cpu" ]]; then BOOST="*cpu*"; else BOOST="*cuda*"; fi && \
     micromamba install -y -n base \
     onnx \
-    onnxruntime \
+    onnxruntime=*=${BOOST} \
     numpy \
     scipy \
     pandas \

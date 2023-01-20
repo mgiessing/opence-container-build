@@ -7,7 +7,11 @@ RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi &
     if [[ $GPU_CPU == "-cpu" ]]; then BOOST="*cpu*"; else BOOST="*cuda*"; fi && \
     micromamba install -y -n base \
     tensorflow${GPU_CPU} \
+    tensorflow-addons \
+    tensorflow-text \
     tf2onnx \
+    transformers \
+    datasets \
     numpy \
     scipy \
     pandas \

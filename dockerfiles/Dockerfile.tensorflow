@@ -2,7 +2,10 @@ ARG BASE_IMG
 
 FROM ${BASE_IMG}
 ARG GPU_CPU
-RUN micromamba install -y -n base \
+
+RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi && \
+    if [[ $GPU_CPU == "-cpu" ]]; then BOOST="*cpu*"; else BOOST="*cuda*"; fi && \
+    micromamba install -y -n base \
     tensorflow${GPU_CPU} \
     tf2onnx \
     numpy \
@@ -10,8 +13,9 @@ RUN micromamba install -y -n base \
     pandas \
     scikit-learn \
     skl2onnx \
-    lightgbm \
-    xgboost \
+    lightgbm=*=${BOOST} \
+    openmpi=*=${OPENMPI} \
+    xgboost=*=${BOOST} \
     opencv \
     wget \
     matplotlib \

@@ -71,7 +71,7 @@ build-pt-jupyter: build-pt
 build-onnx-jupyter: build-onnx
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-        --build-arg ONNX_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx \
+        --build-arg ONNX_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx${GPU_CPU} \
         -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx${GPU_CPU}-jupyter \
         -f dockerfiles/Dockerfile.onnx.jupyter .
 

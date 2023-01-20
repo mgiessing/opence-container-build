@@ -22,6 +22,7 @@ RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi &
     wget \
     matplotlib \
     spacy && \
+    pip3 install fastai && \
     micromamba clean --all --yes
 
 ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python3"]

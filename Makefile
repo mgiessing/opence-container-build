@@ -6,16 +6,22 @@ IMAGE=opence
 ROOT_IMAGE?=mambaorg/micromamba
 PYTHON_VERSION?=3.9
 CHANNEL?=https://ftp.osuosl.org/pub/open-ce
-OPENCE_VERSION?=1.5.1
+OPENCE_VERSION?=1.6.1
 PLATFORMS?=linux/ppc64le #,linux/amd64
 
 USE_GPU?=false
 
 ifeq ($(USE_GPU), false)
   GPU_CPU+=-cpu
+  IS_P10+=-p10
+  CHANNEL:=$(addsuffix -p10,$(CHANNEL))
 else
+  IS_P10+=""
   GPU_CPU+=""
 endif
+
+debug:
+	echo -n "${CHANNEL}"
 
 build-all: build-tf-jupyter build-pt-jupyter build-onnx-jupyter
 
@@ -26,7 +32,7 @@ build-base:
 	--build-arg ROOT_IMAGE=${ROOT_IMAGE} \
 	--build-arg CHANNEL=${CHANNEL} \
 	--build-arg OPENCE_VERSION=${OPENCE_VERSION} \
-	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
+	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-base${IS_P10} \
 	-f dockerfiles/Dockerfile.base .
 
 build-tf: build-base

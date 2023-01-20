@@ -13,10 +13,15 @@ Each framwork comes in 4 flavors:<br>
 - GPU-jupyter
 - CPU-jupyter
 
+---
+
 ## Compatibilty Matrix for major Frameworks
+
+**Starting with OpenCE 1.6.1 all CPU builds will be Power10/MMA enabled!**
 
 Open-CE | Python | CUDA | Tensorflow | Pytorch | ONNX | ONNX Runtime | XGBoost | LightGBM
 --- | --- | --- | --- | --- | --- |--- | --- |--- 
+v1.6.1 | 3.9 | 11.2 | 2.8.1 | 1.10.2 | 1.11.0 | 1.11.0 | 1.5.2 | 3.3.2
 v1.5.1 | 3.9 | 11.2 | 2.7.0 | 1.10.1 | 1.10.2 | 1.10.0 | 1.5.1 | 3.3.1
 v1.4.1 | 3.8 | 11.2 | 2.6.2 | 1.9.0 | 1.7.0 | 1.7.2 | 1.4.2 | 3.2.1
 v1.3.1 | 3.8 | 11.2 | 2.5.1 | 1.8.1 | 1.7.0 | 1.7.2 | 1.4.2 | 3.2.1

@@ -49,7 +49,8 @@ build-onnx: build-base
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
         --build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
-        -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx \
+	--build-arg GPU_CPU=${GPU_CPU} \
+        -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx${GPU_CPU} \
         -f dockerfiles/Dockerfile.onnx .
 
 build-tf-jupyter: build-tf
@@ -71,6 +72,6 @@ build-onnx-jupyter: build-onnx
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
         --build-arg ONNX_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx \
-        -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx-jupyter \
+        -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx${GPU_CPU}-jupyter \
         -f dockerfiles/Dockerfile.onnx.jupyter .
 

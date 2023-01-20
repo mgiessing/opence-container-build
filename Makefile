@@ -14,7 +14,6 @@ USE_GPU?=false
 ifeq ($(USE_GPU), false)
   GPU_CPU+=-cpu
   IS_P10+=-p10
-  CHANNEL:=$(addsuffix -p10,$(CHANNEL))
 else
   IS_P10+=""
   GPU_CPU+=""
@@ -31,7 +30,7 @@ build-base:
 	--build-arg PYTHON_VERSION=${PYTHON_VERSION} \
 	--build-arg ROOT_IMAGE=${ROOT_IMAGE} \
 	--build-arg CHANNEL=${CHANNEL} \
-	--build-arg OPENCE_VERSION=${OPENCE_VERSION} \
+	--build-arg OPENCE_VERSION=${OPENCE_VERSION}${IS_P10} \
 	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-base${IS_P10} \
 	-f dockerfiles/Dockerfile.base .
 

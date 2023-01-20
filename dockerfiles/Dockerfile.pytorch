@@ -7,7 +7,7 @@ RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi &
     micromamba install -y -n base \
     pytorch${GPU_CPU} \
     torchvision${GPU_CPU} \
-    torchtext \
+    torchtext${GPU_CPU} \
     transformers \
     datasets \
     numpy \

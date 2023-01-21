@@ -9,7 +9,6 @@ ARG OPENCE_VERSION=1.8.0
 RUN micromamba config append channels ${CHANNEL}/label/${CHANNEL}-${OPENCE_VERSION} && \
     micromamba config append channels ${CHANNEL} && \
     micromamba config append channels main && \
-    micromamba config set channel_priority strict && \
     micromamba install -y -n base python=${PYTHON_VERSION} && \
     micromamba clean --all --yes
 

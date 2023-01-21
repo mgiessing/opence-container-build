@@ -6,7 +6,7 @@ ARG PYTHON_VERSION=3.10
 ARG CHANNEL=rocketce
 ARG OPENCE_VERSION=1.8.0
 
-RUN micromamba config append channels ${CHANNEL}/label/${CHANNLE}-${OPENCE_VERSION} && \
+RUN micromamba config append channels ${CHANNEL}/label/${CHANNEL}-${OPENCE_VERSION} && \
     micromamba config append channels ${CHANNEL} && \
     micromamba config append channels main && \
     micromamba config set channel_priority strict && \

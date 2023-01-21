@@ -32,7 +32,7 @@ build-base:
 build-tf: build-base
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-	--build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base$ \
+	--build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
 	--build-arg GPU_CPU=${GPU_CPU} \
 	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-tensorflow${GPU_CPU} \
 	-f dockerfiles/Dockerfile.tensorflow .

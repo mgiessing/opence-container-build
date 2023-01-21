@@ -2,7 +2,7 @@
 
 This repository provides container images for [Open-CE](https://github.com/open-ce) environments.
 
-Images are preconfigured with the corresponding build version from [FTP Orgeon State University](https://ftp.osuosl.org/pub/open-ce/).
+**Starting with Open-CE v1.8.0 the images are going to be preconfgured with builds from [RocketCE](https://anaconda.org/rocketce)!**
 
 It is divided into 3 major frameworks: <br>
 PyTorch, Tensorflow & Onnx<br>
@@ -50,6 +50,7 @@ Jupyter can then be accessed in browser.
 
 Open-CE | Python | CUDA | Tensorflow | Pytorch | ONNX | ONNX Runtime | XGBoost | LightGBM
 --- | --- | --- | --- | --- | --- |--- | --- |--- 
+v1.8.0 | 3.10 | 11.4 | 2.10.1 | 1.13.0 | 1.12.0 | 1.13.1 | 1.7.1 | 3.3.3
 v1.7.2 | 3.10 | 11.4 | 2.9.2 | 1.12.1 | 1.12.0 | 1.12.1 | 1.6.2 | 3.3.2
 v1.6.1 | 3.9 | 11.2 | 2.8.1 | 1.10.2 | 1.11.0 | 1.11.0 | 1.5.2 | 3.3.2
 v1.5.1 | 3.9 | 11.2 | 2.7.0 | 1.10.1 | 1.10.2 | 1.10.0 | 1.5.1 | 3.3.1

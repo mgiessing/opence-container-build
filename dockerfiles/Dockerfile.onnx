@@ -2,8 +2,7 @@ ARG BASE_IMG
 
 FROM ${BASE_IMG}
 ARG GPU_CPU
-RUN if [[ $GPU_CPU == "-cpu" ]]; then sed -i "s/osuosl.*/&-p10\/1.7.2-p10/" ${HOME}/.condarc; fi && \
-    if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi && \
+RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi && \
     if [[ $GPU_CPU == "-cpu" ]]; then BOOST="*cpu*"; else BOOST="*cuda*"; fi && \
     micromamba install -y -n base \
     onnx \

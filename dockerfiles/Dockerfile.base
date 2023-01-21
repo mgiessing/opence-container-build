@@ -2,11 +2,12 @@ ARG ROOT_IMAGE=mambaorg/micromamba
 
 FROM ${ROOT_IMAGE}
 
-ARG PYTHON_VERSION=3.8
-ARG CHANNEL=https://ftp.osuosl.org/pub/open-ce
-ARG OPENCE_VERSION=1.1.1
+ARG PYTHON_VERSION=3.10
+ARG CHANNEL=rocketce
+ARG OPENCE_VERSION=1.8.0
 
-RUN micromamba config append channels ${CHANNEL}/${OPENCE_VERSION} && \
+RUN micromamba config append channels ${CHANNEL}/label/${CHANNLE}-${OPENCE_VERSION} && \
+    micromamba config append channels ${CHANNEL} && \
     micromamba config append channels main && \
     micromamba config set channel_priority strict && \
     micromamba install -y -n base python=${PYTHON_VERSION} && \

@@ -5,7 +5,6 @@ ARG GPU_CPU
 RUN if [[ $GPU_CPU == "-cpu" ]]; then sed -i "s/osuosl.*/&-p10/" ${HOME}/.condarc; fi && \
     if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi && \
     if [[ $GPU_CPU == "-cpu" ]]; then BOOST="*cpu*"; else BOOST="*cuda*"; fi && \
-    micromamba install -y -n base -c main protobuf=3.19.* && \
     micromamba install -y -n base \
     onnx \
     onnxruntime=*=${BOOST} \

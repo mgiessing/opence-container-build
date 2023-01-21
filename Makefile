@@ -4,9 +4,9 @@ REPO=quay.io/mgiessing
 IMAGE=opence
 
 ROOT_IMAGE?=mambaorg/micromamba
-PYTHON_VERSION?=3.9
-CHANNEL?=https://ftp.osuosl.org/pub/open-ce
-OPENCE_VERSION?=1.6.1
+PYTHON_VERSION?=3.10
+CHANNEL?=rocketce
+OPENCE_VERSION?=1.8.0
 PLATFORMS?=linux/ppc64le #,linux/amd64
 
 USE_GPU?=false

@@ -14,5 +14,5 @@ RUN micromamba config append channels ${CHANNEL}/label/${CHANNEL}-${OPENCE_VERSI
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 ENV PATH=${PATH}:/opt/conda/bin \
-    HOME=/tmp
+    HOME=/home/mambauser
 ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python3"]

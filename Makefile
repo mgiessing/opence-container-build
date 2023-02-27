@@ -6,7 +6,7 @@ IMAGE=opence
 ROOT_IMAGE?=mambaorg/micromamba
 PYTHON_VERSION?=3.10
 CHANNEL?=rocketce
-OPENCE_VERSION?=1.8.0
+OPENCE_VERSION?=1.8.1
 PLATFORMS?=linux/ppc64le #,linux/amd64
 
 USE_GPU?=false
@@ -17,7 +17,7 @@ else
   GPU_CPU+=""
 endif
 
-build-all: build-tf-jupyter build-pt-jupyter build-onnx-jupyter
+build-all: build-full-jupyter build-tf-jupyter build-pt-jupyter build-onnx-jupyter
 
 build-base:
 	${DOCKER_CMD} --push \
@@ -28,6 +28,14 @@ build-base:
 	--build-arg OPENCE_VERSION=${OPENCE_VERSION} \
 	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
 	-f dockerfiles/Dockerfile.base .
+
+build-full: build-base
+	${DOCKER_CMD} --push \
+        --platform ${PLATFORMS} \
+	--build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
+	--build-arg GPU_CPU=${GPU_CPU} \
+	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-full${GPU_CPU} \
+	-f dockerfiles/Dockerfile.full .
 
 build-tf: build-base
 	${DOCKER_CMD} --push \
@@ -52,6 +60,13 @@ build-onnx: build-base
 	--build-arg GPU_CPU=${GPU_CPU} \
         -t ${REPO}/${IMAGE}:${OPENCE_VERSION}-onnx${GPU_CPU} \
         -f dockerfiles/Dockerfile.onnx .
+
+build-full-jupyter: build-full
+	${DOCKER_CMD} --push \
+        --platform ${PLATFORMS} \
+	--build-arg FULL_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-full \
+	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-full${GPU_CPU}-jupyter \
+	-f dockerfiles/Dockerfile.full.jupyter .
 
 build-tf-jupyter: build-tf
 	${DOCKER_CMD} --push \

@@ -1,0 +1,35 @@
+ARG BASE_IMG
+
+FROM ${BASE_IMG}
+ARG GPU_CPU
+
+RUN if [[ $GPU_CPU == "-cpu" ]]; then OPENMPI="*h*"; else OPENMPI="*cuda*"; fi && \
+    if [[ $GPU_CPU == "-cpu" ]]; then BOOST="*cpu*"; else BOOST="*cuda*"; fi && \
+    micromamba install -y -n base \
+    tensorflow${GPU_CPU} \
+    tensorflow-addons \
+    tensorflow-text \
+    pytorch${GPU_CPU} \
+    torchvision${GPU_CPU} \
+    torchtext${GPU_CPU} \
+    onnx \
+    onnxruntime=*=${BOOST} \
+    tf2onnx \
+    transformers \
+    datasets \
+    numpy \
+    scipy \
+    pandas \
+    scikit-learn \
+    skl2onnx \
+    lightgbm=*=${BOOST} \
+    openmpi=*=${OPENMPI} \
+    xgboost=*=${BOOST} \
+    opencv \
+    wget \
+    matplotlib \
+    spacy && \
+    pip3 install --no-cache-dir fastai && \
+    micromamba clean --all --yes
+
+ENTRYPOINT ["/usr/local/bin/_entrypoint.sh", "python3"]

@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cpu-notebook
+  labels:
+    app: cpu-notebook
+spec:
+  volumes:
+  - name: dshm
+    emptyDir:
+      medium: Memory
+  containers:
+  - name: cpu-notebook
+    image: quay.io/mgiessing/opence:1.8.1-cpu-jupyter
+    volumeMounts:
+      - mountPath: /dev/shm
+        name: dshm
+    ports:
+    - containerPort: 8888
+      name: cpu-notebook
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cpu-notebook
+  labels:
+    app: cpu-notebook
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    name: http
+    targetPort: 8888
+  selector:
+    app: cpu-notebook
+---
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  labels:
+    app: cpu-notebook
+  name: cpu-notebook
+spec:
+  port:
+    targetPort: http
+  to:
+    kind: Service
+    name: cpu-notebook

@@ -64,7 +64,7 @@ build-onnx: build-base
 build-full-jupyter: build-full
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-	--build-arg FULL_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION} \
+	--build-arg FULL_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}${GPU_CPU} \
 	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}${GPU_CPU}-jupyter \
 	-f dockerfiles/Dockerfile.full.jupyter .
 

@@ -2,6 +2,8 @@
 
 This repository provides container images for [Open-CE](https://github.com/open-ce) environments.
 
+Images are available from [quay.io](https://quay.io/mgiessing/opence)
+
 **Starting with Open-CE v1.8.0 the images are going to be preconfgured with builds from [RocketCE](https://anaconda.org/rocketce)!**
 
 It is divided into 3 major frameworks: <br>
@@ -15,7 +17,7 @@ Each framwork comes in 4 flavors:<br>
 
 ## Using the Images 
 
-Images are available from quay.io/mgiessing/opence and can be used by e.g. installing:
+Prerequisites are:
 - [docker-ce](https://docs.docker.com/engine/install/) 
 - [nvidia-docker2](https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/install-guide.html#docker) 
 
@@ -24,7 +26,7 @@ Images are available from quay.io/mgiessing/opence and can be used by e.g. insta
 
 One can start a GPU-enabled container by:
 
-`docker run -ti --rm --gpus 1 quay.io/mgiessing/opence:1.7.2-tensorflow`
+`docker run -ti --rm --gpus 1 quay.io/mgiessing/opence:1.8.1`
 
 GPU availability is given if GPU devices are shown as below:
 
@@ -38,7 +40,7 @@ GPU availability is given if GPU devices are shown as below:
 
 For jupyter images one must use the `-p/--port` and optionally `-v/--volume` flag to forward internal port to the host and optionally mount a volume for persisting data.
 
-`docker run -ti --rm --gpus 1 -p 8888:8888 quay.io/mgiessing/opence:1.7.2-tensorflow-jupyter`
+`docker run -ti --rm --gpus 1 -p 8888:8888 quay.io/mgiessing/opence:1.8.1-jupyter`
 
 Jupyter can then be accessed in browser.
 
@@ -63,6 +65,12 @@ v1.2.2 | 3.8 | 10.2/11.0 | 2.4.1 | 1.7.1 | 1.6.0 | N/A | N/A| N/A
 v1.2.0 | 3.8 | 10.2/11.0 | 2.4.1 | 1.7.1 | 1.6.0 | N/A | N/A | N/A
 v1.1.2 | 3.8 | 10.2/11.0 | 2.4.1 | 1.7.1 | 1.6.0 | N/A | N/A | N/A
 v1.1.1 | 3.8 | 10.2 | 2.4.0 | 1.7.1 | 1.6.0 | N/A | N/A | N/A
+
+<br>
+
+Due to dependency mismatches the full build might not always have the newest version! E.g. tensorflow is not released in 1.8.1, the full build will install it and it has a dependency against numpy=1.23.4 and therefore Pytorch, LightGBM and XGBoost will be in 1.8.0 versions.
+
+The base image can be used to install the newest version of a specific framework.
 
 ## Build
 

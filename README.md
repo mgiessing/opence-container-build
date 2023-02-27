@@ -46,10 +46,13 @@ Jupyter can then be accessed in browser.
 
 ## Compatibilty Matrix for major Frameworks
 
+**Starting with OpenCE 1.8.1 all builds will have optimized Python 3.10!**
+
 **Starting with OpenCE 1.6.1 all CPU builds will be Power10/MMA enabled!**
 
 Open-CE | Python | CUDA | Tensorflow | Pytorch | ONNX | ONNX Runtime | XGBoost | LightGBM
 --- | --- | --- | --- | --- | --- |--- | --- |--- 
+v1.8.1 | 3.10 | 11.4 | 2.10.1 | 1.13.1 | 1.12.0 | 1.13.1 | 1.7.3 | 3.3.4
 v1.8.0 | 3.10 | 11.4 | 2.10.1 | 1.13.0 | 1.12.0 | 1.13.1 | 1.7.1 | 3.3.3
 v1.7.2 | 3.10 | 11.4 | 2.9.2 | 1.12.1 | 1.12.0 | 1.12.1 | 1.6.2 | 3.3.2
 v1.6.1 | 3.9 | 11.2 | 2.8.1 | 1.10.2 | 1.11.0 | 1.11.0 | 1.5.2 | 3.3.2

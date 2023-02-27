@@ -34,7 +34,7 @@ build-full: build-base
         --platform ${PLATFORMS} \
 	--build-arg BASE_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-base \
 	--build-arg GPU_CPU=${GPU_CPU} \
-	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-full${GPU_CPU} \
+	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}${GPU_CPU} \
 	-f dockerfiles/Dockerfile.full .
 
 build-tf: build-base
@@ -64,8 +64,8 @@ build-onnx: build-base
 build-full-jupyter: build-full
 	${DOCKER_CMD} --push \
         --platform ${PLATFORMS} \
-	--build-arg FULL_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION}-full \
-	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}-full${GPU_CPU}-jupyter \
+	--build-arg FULL_IMG=${REPO}/${IMAGE}:${OPENCE_VERSION} \
+	-t ${REPO}/${IMAGE}:${OPENCE_VERSION}${GPU_CPU}-jupyter \
 	-f dockerfiles/Dockerfile.full.jupyter .
 
 build-tf-jupyter: build-tf

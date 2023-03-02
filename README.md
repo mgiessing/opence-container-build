@@ -38,9 +38,18 @@ GPU availability is given if GPU devices are shown as below:
 
 ### Jupyter images
 
-For jupyter images one must use the `-p/--port` and optionally `-v/--volume` flag to forward internal port to the host and optionally mount a volume for persisting data.
+For jupyter images one must use the `-p/--port` and optionally `-v/--volume` flag to forward internal port to the host and optionally mount a volume for persisting data. Also pass the `--user root` to avoid permission errors.
 
-`docker run -ti --rm --gpus 1 -p 8888:8888 quay.io/mgiessing/opence:1.8.1-jupyter`
+```bash
+docker run \
+    -ti \
+    -u root \
+    -p 8888:8888 \
+    -v /tmp/notebooks:/tmp/notebooks \
+    --rm \
+    --gpus 1 \
+    quay.io/mgiessing/opence:1.8.1-jupyter
+```
 
 Jupyter can then be accessed in browser.
 

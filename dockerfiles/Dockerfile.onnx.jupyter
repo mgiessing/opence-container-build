@@ -3,7 +3,8 @@ ARG ONNX_IMG
 FROM ${ONNX_IMG}
 
 RUN micromamba install -y -n base \
-    jupyterlab && \
+    jupyterlab \
+    ipywidgets && \
     micromamba clean --all --yes
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1

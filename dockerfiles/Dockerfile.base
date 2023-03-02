@@ -4,12 +4,12 @@ FROM ${ROOT_IMAGE}
 
 ARG PYTHON_VERSION=3.10
 ARG CHANNEL=rocketce
-ARG OPENCE_VERSION=1.8.0
+ARG OPENCE_VERSION=1.8.1
 
 RUN micromamba config append channels ${CHANNEL}/label/${CHANNEL}-${OPENCE_VERSION} && \
     micromamba config append channels ${CHANNEL} && \
-    micromamba config append channels main && \
-    micromamba install -y -n base python=${PYTHON_VERSION} && \
+    micromamba config append channels defaults && \
+    micromamba install -y -n base python=${PYTHON_VERSION} git && \
     micromamba clean --all --yes
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1

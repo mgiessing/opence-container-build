@@ -3,8 +3,10 @@ ARG FULL_IMG
 FROM ${FULL_IMG}
 
 RUN micromamba install -y -n base \
-    jupyterlab && \
+    jupyterlab \
+    ipywidgets && \
     micromamba clean --all --yes
+
 
 ARG MAMBA_DOCKERFILE_ACTIVATE=1
 ENV PATH=${PATH}:/opt/conda/bin/

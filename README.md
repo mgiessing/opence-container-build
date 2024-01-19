@@ -26,7 +26,7 @@ Prerequisites are:
 
 One can start a GPU-enabled container by:
 
-`docker run -ti --rm --gpus 1 quay.io/mgiessing/opence:1.8.1`
+`docker run -ti --rm --gpus 1 quay.io/mgiessing/opence:1.9.1`
 
 GPU availability is given if GPU devices are shown as below:
 
@@ -45,10 +45,10 @@ docker run \
     -ti \
     -u root \
     -p 8888:8888 \
-    -v /tmp/notebooks:/tmp/notebooks \
+    -v ${HOME}/notebooks:${HOME}/notebooks \
     --rm \
     --gpus 1 \
-    quay.io/mgiessing/opence:1.8.1-jupyter
+    quay.io/mgiessing/opence:1.9.1-jupyter
 ```
 
 Jupyter can then be accessed in browser.
